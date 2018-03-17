@@ -4,8 +4,8 @@ module.exports = function (json) {
     const opts = extend({
         url: '',
         data: {},
-        isHandleError: true, // 是否处理错误
-        isHandleFailure: true, // 是否处理失败
+        isHandleError: false, // 是否处理错误
+        isHandleFailure: false, // 是否处理失败
         callback: function () {
         },
     }, json);
