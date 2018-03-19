@@ -9,21 +9,26 @@ module.exports = function (json) {
     }, json);
     const url = opts.url;
     const data = opts.data;
-    const callback = opts.callback;
+    const callbackFn = opts.callback;
     if (url) {
         const random = ('' + Math.random()).substring(2);
         const fnName = `jsonpCallback${new Date().getTime()}${random}`;
         window[fnName] = function (dataInfo) {
-            callback(dataInfo);
+            callbackFn(null, dataInfo);
         };
         const script = document.createElement('script');
         script.addEventListener('error', function () {
             document.body.removeChild(script);
+            callbackFn({
+                status: 'error',
+                message: '接口出错',
+            }, {});
         });
         script.addEventListener('load', function () {
             document.body.removeChild(script);
         });
         const parameter = qs.queryStringify(data);
+        console.log(parameter);
         // jsonp - jsonp只支持get请求,其他一概不支持
         if (parameter) {
             script.src = `${url}?${parameter}&callback=${fnName}`;
