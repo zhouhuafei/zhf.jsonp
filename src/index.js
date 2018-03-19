@@ -28,7 +28,6 @@ module.exports = function (json) {
             document.body.removeChild(script);
         });
         const parameter = qs.queryStringify(data);
-        console.log(parameter);
         // jsonp - jsonp只支持get请求,其他一概不支持
         if (parameter) {
             script.src = `${url}?${parameter}&callback=${fnName}`;
