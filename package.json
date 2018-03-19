@@ -38,6 +38,7 @@
     },
     "dependencies": {
         "zhf.extend": "^2.0.2",
-        "zhf.query-string": "^1.0.3"
+        "zhf.query-string": "^1.0.3",
+        "zhf.type-of": "^1.0.1"
     }
 }

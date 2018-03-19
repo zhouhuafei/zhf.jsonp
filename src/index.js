@@ -1,18 +1,24 @@
 const extend = require('zhf.extend');
 const qs = require('zhf.query-string');
+const typeOf = require('zhf.type-of');
 module.exports = function (json) {
     const opts = extend({
         url: '',
         data: {},
+        callbackName: null, // 自定义服务器接收的callback名称
         callback: function () {
         },
     }, json);
     const url = opts.url;
     const data = opts.data;
+    const callbackName = opts.callbackName;
     const callbackFn = opts.callback;
     if (url) {
         const random = ('' + Math.random()).substring(2);
-        const fnName = `jsonpCallback${new Date().getTime()}${random}`;
+        let fnName = `jsonpCallback${new Date().getTime()}${random}`;
+        if (callbackName && typeOf(callbackName) === 'string') {
+            fnName = callbackName;
+        }
         window[fnName] = function (dataInfo) {
             callbackFn(null, dataInfo);
         };

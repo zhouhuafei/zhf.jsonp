@@ -18,6 +18,7 @@ jsonp({
         isJsonp: true,
         username: '1123486116@qq.com',
     },
+    callbackName: 'hello',
     callback: function (error, dataInfo) {
         const div = document.createElement('div');
         div.innerHTML = `<div>error：${JSON.stringify(error)}</div><div>dataInfo：${JSON.stringify(dataInfo)}</div>`;
