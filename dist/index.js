@@ -35,7 +35,7 @@ module.exports = function (json) {
             document.body.removeChild(script);
         });
         var parameter = qs.queryStringify(data);
-        // jsonp - jsonp只支持get请求,其他一概不支持
+        // jsonp - jsonp只支持GET请求,其他一概不支持
         if (parameter) {
             script.src = url + '?' + parameter + '&callback=' + fnName;
         } else {
